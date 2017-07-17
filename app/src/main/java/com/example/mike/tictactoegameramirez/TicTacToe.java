@@ -56,7 +56,7 @@ public class TicTacToe {
 
     protected int checkRows() {
 
-        for (int row = 0; row > SIDE; row++) {
+        for (int row = 0; row < SIDE; row++) {
 
             if (game[row][0] != 0 && game[row][0] == game[row][1] && game[row][1] == game[row][2]) {
                 return game[row][0];
@@ -68,9 +68,9 @@ public class TicTacToe {
 
     protected int checkColumns() {
 
-        for (int col = 0; col > SIDE; col++) {
+        for (int col = 0; col < SIDE; col++) {
 
-            if (game[0][col] != 0 && game[0][col] == game[1][col] && game[1][col] == game[col][2]) {
+            if (game[0][col] != 0 && game[0][col] == game[1][col] && game[1][col] == game[2][col]) {
                 return game[0][col];
             }
         }
@@ -124,6 +124,24 @@ public class TicTacToe {
         }
 
         turn = 1;
+    }
+
+    public String result() {
+
+        if(whoWon() > 0)
+        {
+            return "Player " + whoWon() + " won";
+        }
+
+        else if (canNotPlay())
+        {
+            return "Tie Game";
+        }
+
+        else
+        {
+            return "PLAY !!!";
+        }
     }
 
 
