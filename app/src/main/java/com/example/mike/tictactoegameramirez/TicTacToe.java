@@ -1,12 +1,14 @@
 package com.example.mike.tictactoegameramirez;
 
+import android.util.Log;
+
 /**
  * Created by Mike on 7/12/2017.
  */
 
 public class TicTacToe {
 
-    public static final int SIDE = 3;
+    public static final int SIDE = 4;
     private int turn;
     private int[][] game;
 
@@ -58,7 +60,9 @@ public class TicTacToe {
 
         for (int row = 0; row < SIDE; row++) {
 
-            if (game[row][0] != 0 && game[row][0] == game[row][1] && game[row][1] == game[row][2]) {
+            if (game[row][0] != 0 && game[row][0] == game[row][1] && game[row][1] == game[row][2] && game[row][2] == game[row][3]) {
+                Log.d("D: ","Win from rows");
+
                 return game[row][0];
             }
         }
@@ -70,7 +74,8 @@ public class TicTacToe {
 
         for (int col = 0; col < SIDE; col++) {
 
-            if (game[0][col] != 0 && game[0][col] == game[1][col] && game[1][col] == game[2][col]) {
+            if (game[0][col] != 0 && game[0][col] == game[1][col] && game[1][col] == game[2][col] && game[2][col] == game[3][col]) {
+                Log.d("D: ","Win from column");
                 return game[0][col];
             }
         }
@@ -80,12 +85,18 @@ public class TicTacToe {
 
     protected int checkDiagonals() {
 
-        if (game[0][0] != 0 && game[0][0] == game[1][1] && game[1][1] == game[2][2]) {
+        if (game[0][0] != 0 && game[0][0] == game[1][1] && game[1][1] == game[2][2] && game[2][2] == game[3][3]) {
+            Log.d("D: ","Win from botttom left");
+
             return game[0][0];
         }
 
-        if (game[0][2] != 0 && game[0][2] == game[1][1] && game[1][1] == game[2][0]) {
-            return game[2][0];
+
+        //Diagonals right up does not work correctly
+        //Senses diag win but game does not stop
+        if (game[0][3] != 0 && game[0][3] == game[1][2] && game[1][2] == game[2][1] && game[2][1] == game[3][0]) {
+            Log.d("D: ","Win from diag right up");
+            return game[2][1];
         }
 
         return 0;
